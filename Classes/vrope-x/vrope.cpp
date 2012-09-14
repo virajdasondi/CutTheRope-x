@@ -153,38 +153,37 @@ VRope* VRope::cutRopeInStick(VStick* stick,b2Body* newBodyA,b2Body* newBodyB)
 	std::vector<VStick*> newRopeSticks;
 
 	std::vector<VStick *>::iterator astick;
-	for(astick = vSticks.begin()+idx;astick != vSticks.begin()+numPoints-idx-1;++astick)
+	for(astick = vSticks.begin()+idx;astick != vSticks.end();++astick)
 	{
 		newRopeSticks.push_back(*astick);
 	}
 
 	// 4-and remove from this object's array
-	vSticks.erase(vSticks.begin()+idx, vSticks.begin()+numPoints-idx-1);
+	vSticks.erase(vSticks.begin()+idx, vSticks.end());
 
 	// 5-Same for the sprites
 	std::vector<cocos2d::CCSprite*>::iterator nPointSprite = ropeSprites.begin() + idx;
 	std::vector<cocos2d::CCSprite*> newRopeSprites;
 
 	std::vector<cocos2d::CCSprite *>::iterator sprite;
-	for(sprite = ropeSprites.begin()+idx;sprite != ropeSprites.begin()+numPoints-idx-1;++sprite)
+	for(sprite = ropeSprites.begin()+idx;sprite != ropeSprites.end();++sprite)
 	{
 		newRopeSprites.push_back(*sprite);
 	}
 
-	ropeSprites.erase(ropeSprites.begin()+idx, ropeSprites.begin()+numPoints-idx-1);
-
+	ropeSprites.erase(ropeSprites.begin()+idx, ropeSprites.end());
 
 	// 6-Number of points is always the number of sticks + 1
 	std::vector<VPoint*>::iterator nPoint = vPoints.begin() + idx;
 	std::vector<VPoint*> newRopePoints;
 
 	std::vector<VPoint *>::iterator point;
-	for(point = vPoints.begin()+idx;point != vPoints.begin()+numPoints-idx;++point)
+	for(point = vPoints.begin()+idx;point != vPoints.end();++point)
 	{
 		newRopePoints.push_back(*point);
 	}
 
-	vPoints.erase(vPoints.begin()+idx, vPoints.begin()+numPoints-idx);
+	vPoints.erase(vPoints.begin()+idx, vPoints.end());
 
 	// 7-The removeObjectsInRange above removed the last point of
 	// this rope that now belongs to the new rope. You need to clone
