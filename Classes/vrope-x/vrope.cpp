@@ -147,7 +147,7 @@ VRope* VRope::cutRopeInStick(VStick* stick,b2Body* newBodyA,b2Body* newBodyB)
 {
 	// 1-First, find out where in your array the rope will be cut
 	std::vector<VStick *>::iterator nPointStick = std::find(vSticks.begin(), vSticks.end(), stick);
-	size_t idx = nPointStick - vSticks.begin();
+	size_t idx = nPointStick - vSticks.begin() +1;
 
 	// 3-Keep the sticks in a new array
 	std::vector<VStick*> newRopeSticks;
